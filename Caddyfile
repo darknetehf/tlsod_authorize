@@ -1,0 +1,23 @@
+{
+	on_demand_tls {
+		ask http://tlsod:8080/
+		interval 1s
+		burst 5
+	}
+}
+
+https:// {
+	tls {
+		on_demand
+	}
+	encode gzip
+	respond "{host}"
+	log {
+		output file /var/log/caddy/tlsod.log {
+			roll_keep 10
+			roll_keep_for 240h
+		}
+		format json
+		level INFO
+	}
+}

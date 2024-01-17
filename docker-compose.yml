@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  tlsod:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: tlsod
+    hostname: tlsod
+    restart: unless-stopped
+    volumes:
+      - tlsod_db:/data
+    networks:
+      - darknet
+
+volumes:
+  tlsod_db:
+
+networks:
+  darknet:
+    external: true

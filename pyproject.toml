@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "tlsod-authorize"
+version = "0.1.0"
+description = "A small tool to authorize the provisioning of TLS on demand against an inventory of domain names"
+authors = ["Darknet ehf <info@labs.darknet.com>"]
+maintainers = ["Darknet ehf <info@labs.darknet.com>"]
+homepage = "https://github.com/darknetehf/tlsod_authorize"
+documentation = "https://github.com/darknetehf/tlsod_authorize"
+repository = "https://github.com/darknetehf/tlsod_authorize"
+keywords = ["TLS", "caddy"]
+classifiers = [
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+    "Topic :: Internet :: WWW/HTTP :: Site Management"
+]
+license = "MIT"
+readme = "README.rst"
+packages = [{include = "tlsod_authorize", from = "src"}]
+
+[tool.poetry.scripts]
+tlsod-authorize = "tlsod_authorize.cli:main"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyyaml = "^6.0.1"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+bump2version = "^1.0.1"
+codetiming = "^1.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
