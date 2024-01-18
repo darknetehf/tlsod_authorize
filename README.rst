@@ -26,14 +26,14 @@ The embedded web server expects a request in this format:
 
 Possible answers are as follows:
 
-+----------------------------------------------------------+-------------+
-| description                                              | status code |
-+==========================================================+=============+
-| Domain name found in inventory                           | 200         |
-| Domain name not found in inventory                       | 404         |
-| Invalid request or domain name missing from query string | 400         |
-| Server error                                             | 500         |
-+----------------------------------------------------------+-------------+
+ ========================================================== =============
+  description                                                status code
+ ========================================================== =============
+  Domain name found in inventory                             200
+  Domain name not found in inventory                         404
+  Invalid request or domain name missing from query string   400
+  Server error                                               500
+ ========================================================== ============= 
 
 Usage
 -----
