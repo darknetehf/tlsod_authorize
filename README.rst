@@ -15,6 +15,26 @@ See references below for more background information.
 
 The inventory of domain names is stored in a SQLite database file. The file will be created upon first run if it does not already exist.
 
+How it works
+------------
+
+The embedded web server expects a request in this format:
+
+.. code-block::
+
+   http://tlsod:8080?domain=test.com
+
+Possible answers are as follows:
+
++----------------------------------------------------------+-------------+
+| description                                              | status code |
++==========================================================+=============+
+| Domain name found in inventory                           | 200         |
+| Domain name not found in inventory                       | 404         |
+| Invalid request or domain name missing from query string | 400         |
+| Server error                                             | 500         |
++----------------------------------------------------------+-------------+
+
 Usage
 -----
 
