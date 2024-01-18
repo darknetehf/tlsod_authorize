@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tlsod-authorize"
-version = "0.1.1"
+version = "0.1.2"
 description = "A small tool to authorize the provisioning of TLS on demand against an inventory of domain names"
 authors = ["Darknet ehf <info@labs.darknet.com>"]
 maintainers = ["Darknet ehf <info@labs.darknet.com>"]
