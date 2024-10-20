@@ -21,7 +21,8 @@ tlsod-authorize = "tlsod_authorize.cli:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-pyyaml = "^6.0.1"
+pip = "^24.2"
+pyyaml = "^6.0.2"
 
 [tool.poetry.group.dev]
 optional = true
