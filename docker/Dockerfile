@@ -1,4 +1,4 @@
-FROM python:3.11-alpine as base
+FROM python:3.13-alpine AS base
 
 ARG DEV=false
 ENV VIRTUAL_ENV=/app/.venv \
@@ -8,7 +8,7 @@ RUN apk update && \
     apk add libpq
 
 
-FROM base as builder
+FROM base AS builder
 
 ENV POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_IN_PROJECT=1 \
@@ -21,16 +21,15 @@ RUN apk update && \
 WORKDIR /app
 
 # Install Poetry
-RUN pip install poetry==1.7.1
+RUN pip install poetry==1.8.4
 
 # Install the app
 COPY pyproject.toml poetry.lock README.rst ./
 COPY src/ ./src
 
-# RUN poetry install --without dev --no-root && rm -rf $POETRY_CACHE_DIR
-RUN poetry install --without dev
+RUN poetry install --without dev && rm -rf $POETRY_CACHE_DIR
 
-FROM base as runtime
+FROM base AS runtime
 
 COPY --from=builder /app /app
 
