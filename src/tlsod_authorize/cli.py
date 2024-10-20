@@ -100,6 +100,8 @@ def main():
 
         logger = setup_logging(Path(current_dir) / LOGGING_CONFIG_FILE)
 
+        logger.info(f"Starting tlsod-authorize v{__version__}")
+
         # create DB if it doesn't exist yet
         if not os.path.isfile(args.db_path):
             logger.info(f"Create database: {args.db_path}")
