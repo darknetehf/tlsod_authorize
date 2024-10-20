@@ -34,4 +34,8 @@ FROM base as runtime
 
 COPY --from=builder /app /app
 
+# switch to non-privileged user
+RUN addgroup -S tlsod && adduser -S tlsod -G tlsod
+USER tlsod
+
 CMD ["tlsod-authorize", "--db=/data/domains.sqlite", "--port=8080"]
