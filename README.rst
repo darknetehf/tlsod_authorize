@@ -84,7 +84,7 @@ Limitations
 -----------
 
 - The application should handle concurrent requests but has not been tested under heavy load.
-- Domain name lookup is performed in a case-insensitive manner. Therefore, no index is used and the queries are not optimized.
+- Domain name lookup is performed in a *case-insensitive* manner. Therefore, no index is used and the queries are not optimized. However, the use of a LIMIT clause should prevent a full table scan and return as soon as a matching record is found.
 
 References
 ----------
