@@ -4,13 +4,13 @@ import re
 from contextlib import closing
 from functools import cached_property
 from http.server import BaseHTTPRequestHandler
-from http.server import ThreadingHTTPServer as HTTPServer
+from http.server import ThreadingHTTPServer
 from urllib.parse import parse_qsl, urlparse
 
 
-class TlsodHTTPServer(HTTPServer):
+class TlsodHTTPServer(ThreadingHTTPServer):
     def __init__(self, db_handle, *args, **kwargs):
-        HTTPServer.__init__(self, *args, **kwargs)
+        ThreadingHTTPServer.__init__(self, *args, **kwargs)
         self.RequestHandlerClass.db_handle = db_handle
 
 
