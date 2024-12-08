@@ -108,8 +108,9 @@ def main():
             create_db(args.db_path)
 
         logger.info(f"Starting web server on port {args.port}")
-        # permit access from other threads
-        db = sqlite3.connect(args.db_path, check_same_thread=False)
+        # open DB in read-only mode
+        # check_same_thread=False: permit access from other threads (untested)
+        db = sqlite3.connect(f"file:{args.db_path}?mode=ro", uri=True, check_same_thread=False)
         server = TlsodHTTPServer(db, ("", args.port), WebRequestHandler)
 
         with contextlib.closing(db):
