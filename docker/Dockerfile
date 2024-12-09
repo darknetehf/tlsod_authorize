@@ -37,4 +37,5 @@ COPY --from=builder /app /app
 RUN addgroup -S tlsod && adduser -S tlsod -G tlsod
 USER tlsod
 
-CMD ["tlsod-authorize", "--db=/data/domains.sqlite", "--port=8080"]
+ENTRYPOINT ["tlsod-authorize"]
+CMD ["--db=/data/domains.sqlite", "--port=8080"]
