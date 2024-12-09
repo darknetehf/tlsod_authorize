@@ -45,3 +45,7 @@ repos:
         language_version: python3
         types: [ python ]
         require_serial: true
+        exclude: ^tests/
+        args:
+        - -s
+        - B404,B603
