@@ -1,39 +1,51 @@
-[tool.poetry]
+[project]
 name = "tlsod-authorize"
 version = "0.5.0"
 description = "A small tool to authorize the provisioning of TLS on demand against an inventory of domain names"
-authors = ["Darknet ehf <info@labs.darknet.com>"]
-maintainers = ["Darknet ehf <info@labs.darknet.com>"]
-homepage = "https://github.com/darknetehf/tlsod_authorize"
-documentation = "https://github.com/darknetehf/tlsod_authorize"
-repository = "https://github.com/darknetehf/tlsod_authorize"
+license = { text = "MIT" }
+readme = "README.rst"
+requires-python = ">=3.13"
+authors = [
+    {name = "Darknet ehf", email = "info@labs.darknet.com"}
+]
+maintainers = [
+    {name = "Darknet ehf", email = "info@labs.darknet.com"}
+]
 keywords = ["TLS", "caddy"]
 classifiers = [
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP :: Site Management"
 ]
-license = "MIT"
-readme = "README.rst"
-packages = [{include = "tlsod_authorize", from = "src"}]
+dependencies = [
+    "pyyaml (>=6.0.2,<7.0.0)",
+    "requests (>=2.32.3,<3.0.0)"
+]
 
-[tool.poetry.scripts]
+[project.urls]
+homepage = "https://github.com/darknetehf/tlsod_authorize"
+repository = "https://github.com/darknetehf/tlsod_authorize"
+documentation = "https://github.com/darknetehf/tlsod_authorize"
+"Bug Tracker" = "https://github.com/darknetehf/tlsod_authorize/issues"
+
+[project.scripts]
 tlsod-authorize = "tlsod_authorize.cli:main"
 
-[tool.poetry.dependencies]
-python = "^3.11"
-pip = "^24.2"
-pyyaml = "^6.0.2"
+[tool.poetry]
+packages = [{include = "tlsod_authorize", from = "src"}]
+requires-poetry = ">=2.0"
 
 [tool.poetry.group.dev]
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-bump2version = "^1.0.1"
-codetiming = "^1.4.0"
-pytest = "^8.3.4"
-requests = "^2.32.3"
-pytest-randomly = "^3.16.0"
+bumpversion = "^0.6.0"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.5"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
