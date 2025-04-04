@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
-    image: darknet_ehf/tlsod:0.5.0
+    image: darknet_ehf/tlsod:0.6.0
     container_name: tlsod
     hostname: tlsod
     restart: unless-stopped
