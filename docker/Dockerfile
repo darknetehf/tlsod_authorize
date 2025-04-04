@@ -4,9 +4,7 @@ ARG DEV=false
 ENV VIRTUAL_ENV=/app/.venv \
     PATH="/app/.venv/bin:$PATH"
 
-RUN apk update && \
-    apk add libpq
-
+RUN apk update
 
 FROM base AS builder
 
@@ -15,26 +13,24 @@ ENV POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_CREATE=1 \
     POETRY_CACHE_DIR=/tmp/poetry_cache
 
-RUN apk update && \
-    apk add musl-dev build-base gcc gfortran openblas-dev
-
 WORKDIR /app
 
 # Install Poetry
-RUN pip install poetry==1.8.4
+RUN pip install poetry==2.1.1
 
 # Install the app
 COPY pyproject.toml poetry.lock README.rst ./
 COPY src/ ./src
 
-RUN poetry install --without dev && rm -rf $POETRY_CACHE_DIR
+RUN poetry install && rm -rf $POETRY_CACHE_DIR
 
 FROM base AS runtime
 
-COPY --from=builder /app /app
+RUN addgroup -S tlsod && adduser -S tlsod -G tlsod
+
+COPY --chown=tlsod:root --from=builder /app /app
 
 # switch to non-privileged user
-RUN addgroup -S tlsod && adduser -S tlsod -G tlsod
 USER tlsod
 
 ENTRYPOINT ["tlsod-authorize"]
